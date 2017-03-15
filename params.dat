@@ -1,0 +1,41 @@
+===========================|********VERSION 1.0********
+3DPDR input parameters file|    ~~~ COMMENTS ~~~
+===========================|-------------------------
+1Dn30.dat		   !Input file (20 char. max.)
+V1			   !Output file (20 char. max)
+0			   !HEALPix level of refinement
+1.3			   !Theta critical (0<phi<pi/2)
+8			   !First set of Chemical Iterations
+6000			   !Total iterations
+0.9			   !min number density (cm^-3)
+1e12	 	 	   !max number density (cm^-3)
+5.0E-17 		   !Cosmic Rays (s^-1)
+1.0			   !Turbulent velocity (km/s)
+20.0			   !Dust temperature (K)
+1e7			   !End time (yr)
+100.0			   !Gas-to-dust
+1.0			   !Metallicity
+0.42			   !Omega
+1.0E-7			   !Grain radius (m)
+===========================|
+Input files for molecules  |*** 20 characters max ***
+===========================|
+12co.dat		   !CO
+12c+.dat		   !CII
+12c.dat  		   !CI
+16o.dat  		   !OI
+===========================|
+Thermal balance values     |
+===========================|
+10.0			   !Initial temperature (used when TEMP_GUESS is OFF)
+10.0			   !Tlow (used when TEMP_GUESS is OFF)
+8000.0			   !Thigh (used when TEMP_GUESS is OFF)
+2.7			   !Tmin (absolute lower bound) 
+30000.0			   !Tmax (absolute upper bound)
+0.005			   !Fcrit (% Accuracy)
+0.01			   !Tdiff (maximum temperature difference)
+===========================| 
+UV field		   |
+===========================| 
+UNI			   !ISO-tropic, UNI-directional
+10	 		   !G0 (in Draine field units) -x to +x in 1D
