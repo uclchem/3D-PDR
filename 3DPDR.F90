@@ -316,7 +316,7 @@ ns_max=8192
 allocate(vector(1:3))
 allocate(vertex(1:3,1:4))
 allocate(vectors(1:3,0:nrays-1))
-allocate(expanded(0:pdr_ptot));expanded=.false.
+!allocate(expanded(0:pdr_ptot));expanded=.false.
 allocate(dobinarychop(0:pdr_ptot));dobinarychop=.false.
 allocate(previouschange(0:pdr_ptot))
 
@@ -625,6 +625,7 @@ DO ITERATION=1,ITERTOT
 !$OMP PARALLEL DO DEFAULT(SHARED) PRIVATE (pp,p)
 #endif
        DO pp=1,pdr_ptot
+       	  if (converged(pp)) cycle
           p=IDlist_pdr(pp)
           pdr(p)%abundance = dummy_abundance(:,pp)
        enddo
@@ -1007,16 +1008,17 @@ endif !dobinarychop
       ! If the temperatures are converging in a value that thermal balance can't be reached
       ! double the high temperature and half the low one. If the temperatures are still not converging, force convergence.
       if ((abs(gastemperature(pp)-previousgastemperature(pp)).le.Tdiff).and.(Fratio(pp).gt.Fcrit)) then
-         if (expanded(pp)) converged(pp) = .true.
-         if (Fmean(pp).gt.0.and..not.converged(pp)) then 
-           Tlow(pp) = gastemperature(pp)
-           gastemperature(pp) = 4.0D0*gastemperature(pp)
-         endif
-         if (Fmean(pp).lt.0.and..not.converged(pp)) then 
-           Thigh(pp) = gastemperature(pp)
-           gastemperature(pp) = 0.25D0*gastemperature(pp)
-         endif
-         expanded(pp) = .true.
+         converged(pp)=.true.
+   !      if (expanded(pp)) converged(pp) = .true.
+   !      if (Fmean(pp).gt.0.and..not.converged(pp)) then 
+   !        Tlow(pp) = gastemperature(pp)
+   !        gastemperature(pp) = 4.0D0*gastemperature(pp)
+   !      endif
+   !      if (Fmean(pp).lt.0.and..not.converged(pp)) then 
+   !        Thigh(pp) = gastemperature(pp)
+   !        gastemperature(pp) = 0.25D0*gastemperature(pp)
+   !      endif
+   !      expanded(pp) = .true.
       endif
 #endif
 
