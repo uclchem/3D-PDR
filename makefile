@@ -18,7 +18,7 @@ GUESS_TEMP        = 1
 THERMALBALANCE    = 1
 TEMP_FIX          = 1
 CO_FIX            = 1
-H2FORM		  = 0
+H2FORM		  = 1
 
 #Compilers options and flags
 
